@@ -1,0 +1,459 @@
+/*
+ * Project STRIKE — Global Design System v3.0
+ * Philosophy: Origin Financial — Dark, premium, consistent
+ * Background: Near-black (#09090b)
+ * Card: Dark slate with subtle borders
+ * Primary Text: Light slate (#f1f5f9)
+ * Positive/CTA: Mint Green (#10b981)
+ * Debt/Warning: Muted Crimson (#ef4444)
+ * Typography: Space Grotesk (display/figures) + Inter (body/UI)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-strike-mint: var(--strike-mint);
+  --color-strike-crimson: var(--strike-crimson);
+  --color-strike-slate: var(--strike-slate);
+  --color-strike-amber: var(--strike-amber);
+}
+
+:root {
+  /* STRIKE Brand Colors */
+  --strike-mint: oklch(0.696 0.17 162.48);
+  --strike-crimson: oklch(0.627 0.258 29.23);
+  --strike-slate: oklch(0.15 0.02 261.7);
+  --strike-amber: oklch(0.769 0.188 70.08);
+
+  /* Semantic tokens — Dark theme as default */
+  --primary: oklch(0.696 0.17 162.48);
+  --primary-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.696 0.17 162.48);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --chart-1: oklch(0.696 0.17 162.48);
+  --chart-2: oklch(0.627 0.258 29.23);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.5 0.15 260);
+  --chart-5: oklch(0.623 0.214 259.815);
+  --radius: 0.875rem;
+
+  /* Dark theme — Origin Financial inspired */
+  --background: #09090b;
+  --foreground: #f1f5f9;
+  --card: #0f1117;
+  --card-foreground: #f1f5f9;
+  --popover: #0f1117;
+  --popover-foreground: #f1f5f9;
+  --secondary: #1a1d27;
+  --secondary-foreground: #94a3b8;
+  --muted: #1a1d27;
+  --muted-foreground: #64748b;
+  --accent: #1a2332;
+  --accent-foreground: #f1f5f9;
+  --destructive: oklch(0.627 0.258 29.23);
+  --destructive-foreground: oklch(1 0 0);
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: oklch(0.696 0.17 162.48);
+  --sidebar: #0c0d12;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-accent: #1a2332;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: oklch(0.696 0.17 162.48);
+
+  /* Dark card tokens */
+  --dark-card-bg: linear-gradient(135deg, #0f172a 0%, #131a2b 100%);
+  --dark-card-border: rgba(255, 255, 255, 0.06);
+  --dark-card-border-hover: rgba(255, 255, 255, 0.12);
+  --dark-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --dark-card-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Glass tokens for modals/overlays */
+  --glass-bg: rgba(15, 17, 23, 0.85);
+  --glass-bg-heavy: rgba(15, 17, 23, 0.95);
+  --glass-bg-dark: rgba(15, 23, 42, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-subtle: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
+  --glass-blur-heavy: 40px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --glass-shadow-hover: 0 20px 56px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.011em;
+    line-height: 1.5;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .font-display {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    letter-spacing: -0.025em;
+  }
+  .font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    letter-spacing: -0.011em;
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ── Dark Card System — Origin Financial ── */
+  .dark-card {
+    background: linear-gradient(135deg, #0f172a 0%, #131a2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .dark-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .dark-card-interactive {
+    cursor: pointer;
+  }
+  .dark-card-interactive:hover {
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  .dark-card-active {
+    border-left: 3px solid oklch(0.696 0.17 162.48);
+  }
+
+  /* Legacy glass-card — now maps to dark-card */
+  .glass-card {
+    background: linear-gradient(135deg, #0f172a 0%, #131a2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .glass-card-heavy {
+    background: linear-gradient(135deg, #0c0d12 0%, #111318 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .glass-card-dark {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Strike card compat */
+  .strike-card {
+    background: linear-gradient(135deg, #0f172a 0%, #131a2b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .strike-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Buttons ── */
+  .strike-btn-primary {
+    @apply bg-emerald-500 text-white font-semibold rounded-2xl px-6 py-3;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 14px -2px rgba(16, 185, 129, 0.3);
+  }
+  .strike-btn-primary:hover {
+    background-color: oklch(0.65 0.17 162.48);
+    box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.5);
+    transform: translateY(-1px);
+  }
+  .strike-btn-primary:active {
+    transform: scale(0.97) translateY(0);
+  }
+  .strike-btn-ghost {
+    @apply text-slate-400 font-medium rounded-2xl px-6 py-3;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .strike-btn-ghost:hover {
+    @apply bg-white/5 text-slate-200;
+  }
+
+  /* ── Threat Badges — Dark theme ── */
+  .threat-high {
+    @apply text-red-400 rounded-lg px-2.5 py-1 text-xs font-bold;
+    background: rgba(239, 68, 68, 0.12);
+  }
+  .threat-medium {
+    @apply text-amber-400 rounded-lg px-2.5 py-1 text-xs font-bold;
+    background: rgba(245, 158, 11, 0.12);
+  }
+  .threat-low {
+    @apply text-emerald-400 rounded-lg px-2.5 py-1 text-xs font-bold;
+    background: rgba(16, 185, 129, 0.12);
+  }
+
+  /* ── Progress Bars ── */
+  .progress-bar-debt {
+    @apply h-2.5 rounded-full overflow-hidden;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .progress-bar-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, oklch(0.627 0.258 29.23) 0%, oklch(0.769 0.188 70.08) 40%, oklch(0.696 0.17 162.48) 100%);
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* ── App Shell — Desktop Sidebar + Mobile Bottom Nav ── */
+  .app-layout {
+    min-height: 100vh;
+    background: var(--background);
+    position: relative;
+  }
+
+  /* Desktop sidebar */
+  .app-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    background: #0c0d12;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 40;
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .app-sidebar { display: flex; flex-direction: column; }
+    .app-main { margin-left: 260px; }
+  }
+
+  /* Mobile bottom nav */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    background: #0c0d12;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (min-width: 1024px) {
+    .bottom-nav { display: none; }
+  }
+
+  /* Mobile shell — only used for login/sync */
+  .mobile-app-shell {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    background: var(--background);
+  }
+
+  /* ── Pulse Dot ── */
+  .pulse-dot {
+    @apply w-2 h-2 rounded-full bg-emerald-500;
+    animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  /* ── Number Counter ── */
+  .number-counter {
+    font-family: 'Space Grotesk', sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+  }
+
+  /* ── Dividers ── */
+  .section-divider {
+    @apply border-t my-16;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Paused State ── */
+  .paused-state {
+    --primary: oklch(0.769 0.188 70.08);
+    --ring: oklch(0.769 0.188 70.08);
+  }
+
+  /* ── Victory Card ── */
+  .card-eliminated {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(245, 158, 11, 0.06) 100%);
+    border: 1.5px solid rgba(16, 185, 129, 0.2);
+    border-radius: 1.25rem;
+  }
+  .card-eliminated .progress-bar-fill {
+    background: linear-gradient(90deg, oklch(0.769 0.188 70.08) 0%, oklch(0.85 0.12 90) 100%);
+    box-shadow: 0 0 12px oklch(0.769 0.188 70.08 / 0.5);
+  }
+
+  /* ── Custom Range Slider — Dark ── */
+  input[type="range"],
+  .range-dark {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb,
+  .range-dark::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: oklch(0.696 0.17 162.48);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 12px rgba(16, 185, 129, 0.4);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover,
+  .range-dark::-webkit-slider-thumb:hover {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.6);
+    transform: scale(1.1);
+  }
+  input[type="range"]::-moz-range-thumb,
+  .range-dark::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: oklch(0.696 0.17 162.48);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 12px rgba(16, 185, 129, 0.4);
+    cursor: pointer;
+  }
+
+  /* ── Noise texture overlay — subtle on dark ── */
+  .noise-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* ── Scrollbar styling — Dark ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
